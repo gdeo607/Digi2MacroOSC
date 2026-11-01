@@ -1,0 +1,143 @@
+{
+ "id": "macro",
+ "version": "0.4.0",
+ "license": "AGPL-3.0-or-later",
+ "title": "Macro",
+ "description": "MACRO, a macro-oscillator machine for the Digitakt II: 25 optimized synthesis models after Mutable Instruments' open-source Plaits (MIT) and four DX7 patch banks, with a graphical model selector. A machine mod on core-dt2: machine type 11, parameters 275-279, its knob drawer and its DSP voice routine. Experimental: DSP engine and track-count limits apply.",
+ "category": "Sound",
+ "author": "elekloader port; DSP from DigiKit (Em D) with Tyler Neely/spacejam's optimizations; synthesis code after Emilie Gillet's Plaits (MIT); UI after K\u00e1ri's 2.1",
+ "device": "digitakt-mk2",
+ "os": "1.17",
+ "sources": [
+  "machine.s",
+  "model_fmt.s",
+  "randomize.s",
+  "dx7_text.s",
+  "dx7_names.s",
+  "ui21.s"
+ ],
+ "defsym": {
+  "_dn_harm": "276",
+  "_dn_model": "275",
+  "_dn_ret": "0x4006ce98",
+  "_dn_lret": "0x40069cd0",
+  "_dn_effval": "0x4006aa32"
+ },
+ "machines": [
+  {
+   "id": 11,
+   "descriptor": "plaits_machine"
+  }
+ ],
+ "contribute": [
+  {
+   "to": "core_params",
+   "order": 50,
+   "data": "00000000",
+   "relocs": [
+    [
+     0,
+     "abs32",
+     "sym:plaits_p_model",
+     0
+    ]
+   ]
+  },
+  {
+   "to": "core_params",
+   "order": 50,
+   "data": "00000000",
+   "relocs": [
+    [
+     0,
+     "abs32",
+     "sym:plaits_p_harm",
+     0
+    ]
+   ]
+  },
+  {
+   "to": "core_params",
+   "order": 50,
+   "data": "00000000",
+   "relocs": [
+    [
+     0,
+     "abs32",
+     "sym:plaits_p_timbre",
+     0
+    ]
+   ]
+  },
+  {
+   "to": "core_params",
+   "order": 50,
+   "data": "00000000",
+   "relocs": [
+    [
+     0,
+     "abs32",
+     "sym:plaits_p_morph",
+     0
+    ]
+   ]
+  },
+  {
+   "to": "core_params",
+   "order": 50,
+   "data": "00000000",
+   "relocs": [
+    [
+     0,
+     "abs32",
+     "sym:plaits_p_mix",
+     0
+    ]
+   ]
+  },
+  {
+   "to": "core_knobs",
+   "order": 50,
+   "data": "000001130000011700000000",
+   "relocs": [
+    [
+     8,
+     "abs32",
+     "sym:plaits_ui21",
+     0
+    ]
+   ]
+  }
+ ],
+ "sites": [
+  {
+   "addr": "0x4006ce92",
+   "stock": "4eb9400c8952",
+   "op": "jmp",
+   "target": "dx7_header_text"
+  },
+  {
+   "addr": "0x40069cc8",
+   "stock": "2269005c2f400044",
+   "op": "jmp",
+   "target": "dx7_label_text"
+  }
+ ],
+ "sharc_raw": "sharc_raw.json",
+ "requires": [
+  "core"
+ ],
+ "resources": {
+  "core": "2.4",
+  "names": [
+   "param:275",
+   "param:276",
+   "param:277",
+   "param:278",
+   "param:279"
+  ]
+ },
+ "conflicts": [
+  "aio-plaits"
+ ]
+}

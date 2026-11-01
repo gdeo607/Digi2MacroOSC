@@ -1,0 +1,38 @@
+{
+ "objects": [
+  {
+   "dko": "plaits-48k-dsp.dko.json",
+   "name": "plaits-48k"
+  }
+ ],
+ "contribute": [
+  {
+   "to": "core_dsp_voices",
+   "parts": [
+    [
+     "hex",
+     "0b00000000000000"
+    ]
+   ],
+   "relocs": [
+    [
+     4,
+     "le32",
+     "sym:_pl_render",
+     0
+    ]
+   ]
+  },
+  {
+   "to": "core_mf_selector",
+   "index": 11,
+   "parts": [
+    [
+     "stock",
+     "0x282567d8",
+     4
+    ]
+   ]
+  }
+ ]
+}
